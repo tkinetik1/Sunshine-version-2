@@ -215,13 +215,16 @@ public final class SunshineDateUtils {
          * to compare the number of days that have passed since the epoch (January 1, 1970 at
          * 00:00 GMT)
          */
+
+        /* trying attempted fix from vodhouho on github to calculate date and date display properly */
+
         long daysFromEpochToProvidedDate = elapsedDaysSinceEpoch(localDate);
 
         /*
          * As a basis for comparison, we use the number of days that have passed from the epoch
          * until today.
          */
-        long daysFromEpochToToday = elapsedDaysSinceEpoch(System.currentTimeMillis());
+        long daysFromEpochToToday = elapsedDaysSinceEpoch(getLocalMidnightFromNormalizedUtcDate(normalizeDate(System.currentTimeMillis())));
 
         if (daysFromEpochToProvidedDate == daysFromEpochToToday || showFullDate) {
             /*
